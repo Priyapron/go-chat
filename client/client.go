@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -22,6 +23,12 @@ func main() {
 		// Read user input
 		fmt.Print("Enter message: ")
 		message, _ := reader.ReadString('\n')
+
+		// Check if the user wants to quit
+		if strings.TrimSpace(message) == ":quit" {
+			fmt.Println("Quitting program...")
+			return
+		}
 
 		// Send the message to the server
 		conn.Write([]byte(message))
